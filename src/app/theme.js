@@ -67,6 +67,16 @@ const theme = createTheme({
         },
       ],
     },
+    MuiGrid: {
+      variants: [
+        {
+          props: { variant: "gradient" },
+          style: {
+            background: `linear-gradient(to bottom, ${themeVariables.primary}, white, white, white)`,
+          },
+        },
+      ],
+    },
   },
 });
 

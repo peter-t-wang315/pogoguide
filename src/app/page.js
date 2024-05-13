@@ -95,42 +95,53 @@ export default function Home() {
           <br /> Lets try this out
         </Typography>
       </Box>
-      <Grid
-        container
-        spacing={4}
-        pt={2}
-        pb={5}
-        mt={0}
-        sx={{
-          background: `linear-gradient(to bottom, #8794a8, white, white, white)`,
-          // backgroundSize: "1000%",
-        }}
-      >
+      <Grid container>
+        <Grid container item xs={2} variant="gradient"></Grid>
         <Grid
+          container
           item
-          xs={12}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          xs={8}
+          spacing={2}
+          pt={2}
+          pb={5}
+          px={4}
+          mt={0}
+          variant="gradient"
         >
-          <Typography variant="h4" color={"primary.foreground"}>
-            Categories
-          </Typography>
-          <Divider sx={{ width: "67%", height: 2, my: 2 }} />
-        </Grid>
-        {categories.map((category) => (
-          <Grid item xs={12} md={4}>
-            <HomePageCard
-              img={category.img}
-              altImg={category.altImg}
-              title={category.title}
-              link={category.link}
-            />
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h4" color={"primary.foreground"}>
+              Categories
+            </Typography>
+            <Divider sx={{ width: "67%", height: 2, my: 2 }} />
           </Grid>
-        ))}
+          {categories.map((category) => (
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{
+                pr: 2,
+              }}
+            >
+              <HomePageCard
+                img={category.img}
+                altImg={category.altImg}
+                title={category.title}
+                link={category.link}
+              />
+            </Grid>
+          ))}
+        </Grid>
+        <Grid container item xs={2} variant="gradient"></Grid>
       </Grid>
     </>
   );
