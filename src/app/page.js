@@ -1,10 +1,13 @@
 import HomePageCard from "@/components/HomePageCard";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 
 // https://www.deviantart.com/jormxdos/gallery/84991095/pokemon-go-medal
 // https://bulbapedia.bulbagarden.net/wiki/Medal_(GO)
 // pokemongo.fandom.com/wiki/Medals
+
+// Side bar images
+// https://digitalcricut.com/cdn/shop/products/bundle-cricut-file-silhouette-cameo-cartoon-svg-293_grande.jpg?v=1658391364
 
 export default function Home() {
   const categories = [
@@ -58,7 +61,8 @@ export default function Home() {
     },
     {
       title: "PvP",
-      img: "/GoBattleLeagueImage.png",
+      // img: "/GoBattleLeagueImage.png",
+      img: "/medal/pvp.png",
       altImg: "Battle League Image",
       link: "/pvp",
     },
@@ -80,7 +84,7 @@ export default function Home() {
     <>
       <Box
         display={"flex"}
-        backgroundColor={"primary.dark"}
+        backgroundColor={"primary.main"}
         justifyContent={"center"}
         alignItems={"center"}
         py={5}
@@ -88,19 +92,34 @@ export default function Home() {
       >
         <Typography variant="h3">
           Thank you for checking out this page
+          <br /> Lets try this out
         </Typography>
       </Box>
-      <Grid container rowSpacing={3} columnSpacing={4} py={4} px={5}>
+      <Grid
+        container
+        spacing={4}
+        pt={2}
+        pb={5}
+        mt={0}
+        sx={{
+          background: `linear-gradient(to bottom, #8794a8, white, white, white)`,
+          // backgroundSize: "1000%",
+        }}
+      >
         <Grid
           item
           xs={12}
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">Categories</Typography>
+          <Typography variant="h4" color={"primary.foreground"}>
+            Categories
+          </Typography>
+          <Divider sx={{ width: "67%", height: 2, my: 2 }} />
         </Grid>
         {categories.map((category) => (
           <Grid item xs={12} md={4}>
@@ -108,6 +127,7 @@ export default function Home() {
               img={category.img}
               altImg={category.altImg}
               title={category.title}
+              link={category.link}
             />
           </Grid>
         ))}

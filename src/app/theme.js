@@ -10,9 +10,12 @@ const theme = createTheme({
   palette: {
     background: {
       default: themeVariables.background,
+      dark: themeVariables.backgroundDark,
     },
     foreground: {
       default: themeVariables.foreground,
+      light: themeVariables.foregroundLight,
+      dark: themeVariables.foregroundDark,
     },
     primary: {
       main: themeVariables.primary,
@@ -33,7 +36,7 @@ const theme = createTheme({
         root: {
           "&>.MuiFormControl-root>.mui-1daiic5-MuiInputBase-root-MuiOutlinedInput-root":
             {
-              color: themeVariables.primaryForeground,
+              color: themeVariables.foregroundDark,
             },
           "&>.MuiFormControl-root>.MuiInputBase-root": {
             borderRadius: "20px",
@@ -41,11 +44,11 @@ const theme = createTheme({
           },
           "&>.MuiFormControl-root>.MuiInputBase-root>.mui-1d3z3hw-MuiOutlinedInput-notchedOutline":
             {
-              borderColor: themeVariables.primaryForeground,
+              borderColor: themeVariables.foregroundLight,
             },
           "&:hover .MuiFormControl-root>.MuiInputBase-root>.mui-1d3z3hw-MuiOutlinedInput-notchedOutline":
             {
-              borderColor: themeVariables.primaryForegroundDark,
+              borderColor: themeVariables.foregroundDark,
             },
         },
       },

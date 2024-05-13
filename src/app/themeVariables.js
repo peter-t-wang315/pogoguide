@@ -1,12 +1,16 @@
 export const themeVariables = {
-  background: "#eceff1",
+  background: "#fff",
+  backgroundDark: "#eef0f5",
   foreground: "#212427",
-  primary: "#3A7BCF",
-  primaryDark: "#2b4c9d",
-  primaryLight: "#59a9f3",
+  foregroundLight: "#747474",
+  foregroundDark: "#08090a",
+  // m2.material.io primary color: 9CA8B9
+  primary: "#8794a8",
+  primaryDark: "#647287",
+  primaryLight: "#b8c1ce",
   primaryForeground: "#FFF",
-  primaryForegroundDark: "#bfe0fb",
+  primaryForegroundDark: "#eef0f5",
   black: "#212427",
   white: "#FFF",
-  gray: "#eceff1",
+  gray: "#efefef",
 };

@@ -15,14 +15,16 @@ export default function HomePageCard({ img, altImg, title, link }) {
         alignItems: "center",
         py: 2,
         borderRadius: "20px",
-        "&:hover": { boxShadow: 22, cursor: "pointer" },
+        "&:hover": {
+          boxShadow: 22,
+          cursor: "pointer",
+          backgroundColor: "background.dark",
+        },
       }}
       onClick={() => push(link)}
     >
-      <Image src={img} width={150} height={150} alt={altImg} />
-      <Typography variant="h4" mt={2}>
-        {title}
-      </Typography>
+      <Image src={img} width={75} height={75} alt={altImg} />
+      <Typography variant="h5">{title}</Typography>
     </Paper>
   );
 }
