@@ -1,5 +1,5 @@
 "use client";
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -10,11 +10,11 @@ export default function HomePageCard({ img, altImg, title, link }) {
       elevation={5}
       sx={{
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        py: 2,
+        flexDirection: "row",
+        py: 1,
         borderRadius: "20px",
+        position: "relative",
+        overflow: "hidden",
         "&:hover": {
           boxShadow: 22,
           cursor: "pointer",
@@ -23,8 +23,38 @@ export default function HomePageCard({ img, altImg, title, link }) {
       }}
       onClick={() => push(link)}
     >
-      <Image src={img} width={75} height={75} alt={altImg} />
-      <Typography variant="h5">{title}</Typography>
+      {/* Diagonal Slash */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 50,
+          left: -30,
+          width: "200%",
+          height: "110%",
+          backgroundColor: "primary.light",
+          transform: "rotate(-60deg)",
+          transformOrigin: "top left",
+        }}
+      />
+      {/* Image */}
+      <Box sx={{ position: "relative" }}>
+        <Image src={img} width={50} height={50} alt={altImg} />
+      </Box>
+      {/* Text */}
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          sx={{ typography: { xl: "h5", lg: "h6", bgsm: "h7", xs: "h10" } }}
+        >
+          {title}
+        </Typography>
+      </Box>
     </Paper>
   );
 }

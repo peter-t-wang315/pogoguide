@@ -1,3 +1,4 @@
+import GradientTriGrid from "@/components/GradientTriGrid";
 import HomePageCard from "@/components/HomePageCard";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
@@ -95,54 +96,55 @@ export default function Home() {
           <br /> Lets try this out
         </Typography>
       </Box>
-      <Grid container>
-        <Grid container item xs={2} variant="gradient"></Grid>
-        <Grid
-          container
-          item
-          xs={8}
-          spacing={2}
-          pt={2}
-          pb={5}
-          px={4}
-          mt={0}
-          variant="gradient"
-        >
-          <Grid
-            item
-            xs={12}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h4" color={"primary.foreground"}>
-              Categories
-            </Typography>
-            <Divider sx={{ width: "67%", height: 2, my: 2 }} />
-          </Grid>
-          {categories.map((category) => (
+      <GradientTriGrid
+        middleContent={
+          <>
             <Grid
               item
               xs={12}
-              md={4}
               sx={{
-                pr: 2,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <HomePageCard
-                img={category.img}
-                altImg={category.altImg}
-                title={category.title}
-                link={category.link}
-              />
+              <Typography variant="h4" color={"primary.foreground"}>
+                Categories
+              </Typography>
+              <Divider sx={{ width: "67%", height: 2, my: 2 }} />
             </Grid>
-          ))}
-        </Grid>
-        <Grid container item xs={2} variant="gradient"></Grid>
-      </Grid>
+            {categories.map((category) => (
+              <Grid
+                item
+                xs={12}
+                bgsm={6}
+                lg={4}
+                // sx={
+                //   {
+                //     pr: 2,
+                //   }
+                // }
+              >
+                <HomePageCard
+                  img={category.img}
+                  altImg={category.altImg}
+                  title={category.title}
+                  link={category.link}
+                />
+              </Grid>
+            ))}
+          </>
+        }
+        middleContentSX={{
+          pt: 2,
+          pb: 5,
+          px: 4,
+          mt: 0,
+        }}
+        spacing={2}
+        variant={"gradient"}
+      />
     </>
   );
 }
