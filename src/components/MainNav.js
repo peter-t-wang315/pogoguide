@@ -22,12 +22,13 @@ export default async function MainNav() {
         zIndex: 1000,
       }}
     >
-      <Grid item xs={3}>
+      <Grid item xs={3.5} sm={3}>
         <NavLinks />
       </Grid>
       <Grid
         item
-        xs={3}
+        xs={4}
+        sm={3}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -47,7 +48,8 @@ export default async function MainNav() {
       </Grid>
       <Grid
         item
-        xs={3}
+        xs={3.5}
+        sm={3}
         sx={{
           display: "flex",
           alignItems: "center",

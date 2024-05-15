@@ -89,11 +89,17 @@ export default function Home() {
         justifyContent={"center"}
         alignItems={"center"}
         py={5}
+        px={2}
         color={"primary.foreground"}
       >
-        <Typography variant="h3">
-          Thank you for checking out this page
-          <br /> Lets try this out
+        <Typography
+          sx={{ typography: { xs: "h4", bgsm: "h3", md: "h3" } }}
+          align="center"
+        >
+          Welcome to PoGo Guide. <br />
+          The all in one stop shop for <br />
+          Pokemon Go tips. <br />
+          Lets GO
         </Typography>
       </Box>
       <GradientTriGrid
@@ -109,7 +115,10 @@ export default function Home() {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h4" color={"primary.foreground"}>
+              <Typography
+                sx={{ typography: { xs: "h5", bgsm: "h4" } }}
+                color={"primary.foreground"}
+              >
                 Categories
               </Typography>
               <Divider sx={{ width: "67%", height: 2, my: 2 }} />
