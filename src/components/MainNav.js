@@ -16,7 +16,7 @@ export default async function MainNav() {
         alignItems: "center",
         justifyContent: "center",
         py: 2,
-        px: { xs: 2, lg: 15, xl: 30 },
+        px: { xs: 0, sm: 2, lg: 15, xl: 30 },
         backgroundColor: "background.default",
         boxShadow: 5,
         zIndex: 1000,

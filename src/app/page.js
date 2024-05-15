@@ -138,7 +138,7 @@ export default function Home() {
         middleContentSX={{
           pt: 2,
           pb: 5,
-          px: 4,
+          px: { xs: 0, sm: 2, md: 4 },
           mt: 0,
         }}
         spacing={3}
