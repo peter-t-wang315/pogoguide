@@ -9,19 +9,20 @@ export default function GradientTriGrid({
 }) {
   return (
     <Grid container>
-      <Grid container item xs={1} lg={2} variant={variant}></Grid>
+      <Grid container item xs={1} lg={2} xl={2.25} variant={variant}></Grid>
       <Grid
         container
         item
         xs={10}
         lg={8}
+        xl={7.5}
         variant={variant}
         spacing={spacing}
         sx={middleContentSX}
       >
         {middleContent}
       </Grid>
-      <Grid container item xs={1} lg={2} variant={variant}></Grid>
+      <Grid container item xs={1} lg={2} xl={2.25} variant={variant}></Grid>
     </Grid>
   );
 }
