@@ -115,17 +115,7 @@ export default function Home() {
               <Divider sx={{ width: "67%", height: 2, my: 2 }} />
             </Grid>
             {categories.map((category) => (
-              <Grid
-                item
-                xs={12}
-                bgsm={6}
-                lg={4}
-                // sx={
-                //   {
-                //     pr: 2,
-                //   }
-                // }
-              >
+              <Grid item xs={12} bgsm={6} lg={4}>
                 <HomePageCard
                   img={category.img}
                   altImg={category.altImg}
@@ -142,7 +132,7 @@ export default function Home() {
           px: 4,
           mt: 0,
         }}
-        spacing={2}
+        spacing={3}
         variant={"gradient"}
       />
     </>

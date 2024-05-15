@@ -27,12 +27,12 @@ export default function HomePageCard({ img, altImg, title, link }) {
       <Box
         sx={{
           position: "absolute",
-          top: 50,
-          left: -30,
+          top: 60,
+          left: -35,
           width: "200%",
           height: "110%",
           backgroundColor: "primary.light",
-          transform: "rotate(-60deg)",
+          transform: "rotate(-65deg)",
           transformOrigin: "top left",
         }}
       />
@@ -50,7 +50,22 @@ export default function HomePageCard({ img, altImg, title, link }) {
         }}
       >
         <Typography
-          sx={{ typography: { xl: "h5", lg: "h6", bgsm: "h7", xs: "h10" } }}
+          sx={{
+            typography: {
+              xl: "h5",
+              lg: "h6",
+              bgsm: "h7",
+              smsm: "h6",
+              xs: "h10",
+            },
+            fontWeight: {
+              xl: "normal",
+              lg: "normal",
+              bgsm: "normal",
+              smsm: "normal",
+              xs: "normal",
+            },
+          }}
         >
           {title}
         </Typography>
