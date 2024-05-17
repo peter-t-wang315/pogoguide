@@ -36,6 +36,7 @@ const theme = createTheme({
       "foreground-dark": themeVariables.primaryForegroundDark,
     },
     common: {
+      main: themeVariables.white,
       white: themeVariables.white,
       black: themeVariables.black,
       gray: themeVariables.gray,
@@ -84,6 +85,22 @@ const theme = createTheme({
           props: { variant: "gradient" },
           style: {
             background: `linear-gradient(to bottom, ${themeVariables.primary}, white, white, white)`,
+          },
+        },
+      ],
+    },
+    MuiToggleButton: {
+      variants: [
+        {
+          props: { variant: "ghost" },
+          style: {
+            border: "none",
+            paddingLeft: 12,
+            paddingRight: 12,
+            paddingTop: 6,
+            paddingBottom: 6,
+            borderRadius: 18,
+            color: themeVariables.primaryDark,
           },
         },
       ],
