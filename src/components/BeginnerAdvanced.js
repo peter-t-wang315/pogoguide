@@ -7,10 +7,7 @@ export default function BeginnerAdvanced({ value, setValue }) {
       color="common"
       value={value}
       exclusive
-      onChange={(e) => {
-        console.log("OIJD", e.target.value);
-        setValue(e.target.value);
-      }}
+      onChange={(e) => setValue(e.target.value)}
       aria-label="beginner advanced"
     >
       <ToggleButton value="beginner" variant="ghost">
@@ -26,9 +23,5 @@ export default function BeginnerAdvanced({ value, setValue }) {
         Advanced
       </ToggleButton>
     </ToggleButtonGroup>
-    // <ButtonGroup variant="text" aria-label="beginner advanced" color="common">
-    //   <Button>Beginner</Button>
-    //   <Button>Advanced</Button>
-    // </ButtonGroup>
   );
 }

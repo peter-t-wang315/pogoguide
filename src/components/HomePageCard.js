@@ -16,7 +16,7 @@ export default function HomePageCard({ img, altImg, title, link }) {
         position: "relative",
         overflow: "hidden",
         "&:hover": {
-          boxShadow: 22,
+          boxShadow: 20,
           cursor: "pointer",
           backgroundColor: "background.dark",
         },
@@ -54,14 +54,12 @@ export default function HomePageCard({ img, altImg, title, link }) {
             typography: {
               xl: "h5",
               lg: "h6",
-              bgsm: "h7",
-              smsm: "h6",
-              xs: "h10",
+              smsm: "h5",
+              xs: "h6",
             },
             fontWeight: {
               xl: "normal",
               lg: "normal",
-              bgsm: "normal",
               smsm: "normal",
               xs: "normal",
             },

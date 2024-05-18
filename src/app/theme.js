@@ -108,4 +108,16 @@ const theme = createTheme({
   },
 });
 
+// theme.typography.cardTitle = {
+//   [theme.breakpoints.not("xs")]: {
+//     fontSize: "24px",
+//   },
+//   // [theme.breakpoints.down("xl")]: {
+//   //   fontSize: "40px",
+//   // },
+//   [theme.breakpoints.only("xs")]: {
+//     fontSize: "20px",
+//   },
+// };
+
 export default theme;
