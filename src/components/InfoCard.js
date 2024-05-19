@@ -1,8 +1,17 @@
 import { Box, Paper, Typography } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { useRouter } from "next/navigation";
 
-export default function InfoCard({ title, description, type = undefined }) {
+export default function InfoCard({
+  title,
+  description,
+  index,
+  setCollapsibleContent,
+  collapsibleContent = undefined,
+  href = undefined,
+}) {
+  const { push } = useRouter();
   return (
     <Paper
       elevation={5}
@@ -13,16 +22,25 @@ export default function InfoCard({ title, description, type = undefined }) {
         px: 2.5,
         borderRadius: "20px",
         position: "relative",
-        "&:hover": {
-          boxShadow: 14,
-        },
-        ...(type && {
-          "&:hover": {
-            boxShadow: 20,
-            cursor: "pointer",
-            backgroundColor: "background.dark",
-          },
-        }),
+        ...(collapsibleContent || href
+          ? {
+              "&:hover": {
+                boxShadow: 20,
+                cursor: "pointer",
+                backgroundColor: "background.dark",
+              },
+            }
+          : {
+              "&:hover": {
+                boxShadow: 10,
+              },
+            }),
+      }}
+      onClick={() => {
+        if (href) push(href);
+        setCollapsibleContent(
+          collapsibleContent ? [index, collapsibleContent] : []
+        );
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -40,11 +58,11 @@ export default function InfoCard({ title, description, type = undefined }) {
         >
           {title}
         </Typography>
-        {type === "icon" ? (
+        {collapsibleContent ? (
           <InfoOutlinedIcon
             sx={{ color: "primary.light", fontSize: 18, mt: 0.5 }}
           />
-        ) : type === "page" ? (
+        ) : href ? (
           <DescriptionOutlinedIcon
             sx={{ color: "primary.light", fontSize: 18, mt: 0.5 }}
           />

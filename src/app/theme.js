@@ -1,11 +1,18 @@
 // theme.js
 "use client";
+import { Roboto } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import { themeVariables } from "./themeVariables.js";
 
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const theme = createTheme({
   typography: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: roboto.style.fontFamily,
   },
   breakpoints: {
     values: {
