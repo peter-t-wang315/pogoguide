@@ -91,7 +91,7 @@ const theme = createTheme({
         {
           props: { variant: "gradient" },
           style: {
-            background: `linear-gradient(to bottom, ${themeVariables.primary}, white, white, white)`,
+            background: `linear-gradient(to bottom, ${themeVariables.primary}, white, white)`,
           },
         },
       ],

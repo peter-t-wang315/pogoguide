@@ -7,14 +7,23 @@ export default function InfoCard({
   title,
   description,
   index,
+  collapsibleDescription = undefined,
   setCollapsibleContent,
-  collapsibleContent = undefined,
+  collapsibleContent,
+  setOldCollapsibleContent,
+  oldCollapsibleContent,
   href = undefined,
 }) {
   const { push } = useRouter();
   return (
     <Paper
-      elevation={5}
+      elevation={
+        collapsibleContent.length === 0
+          ? 5
+          : index === collapsibleContent[0]
+          ? 20
+          : 2
+      }
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -22,7 +31,7 @@ export default function InfoCard({
         px: 2.5,
         borderRadius: "20px",
         position: "relative",
-        ...(collapsibleContent || href
+        ...(collapsibleDescription || href
           ? {
               "&:hover": {
                 boxShadow: 20,
@@ -35,12 +44,27 @@ export default function InfoCard({
                 boxShadow: 10,
               },
             }),
+        transform:
+          collapsibleContent.length === 0
+            ? "scale(1)"
+            : index !== collapsibleContent[0]
+            ? "scale(0.925)"
+            : "scale(1.025)",
+        transition: "transform 0.3s ease-in-out",
       }}
       onClick={() => {
         if (href) push(href);
-        setCollapsibleContent(
-          collapsibleContent ? [index, collapsibleContent] : []
-        );
+        else {
+          if (index === collapsibleContent?.[0]) {
+            setCollapsibleContent([]);
+            setOldCollapsibleContent(collapsibleContent);
+          } else {
+            setOldCollapsibleContent(collapsibleContent);
+            setCollapsibleContent(
+              collapsibleDescription ? [index, collapsibleDescription] : []
+            );
+          }
+        }
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -58,7 +82,7 @@ export default function InfoCard({
         >
           {title}
         </Typography>
-        {collapsibleContent ? (
+        {collapsibleDescription ? (
           <InfoOutlinedIcon
             sx={{ color: "primary.light", fontSize: 18, mt: 0.5 }}
           />

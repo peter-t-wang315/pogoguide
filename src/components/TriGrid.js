@@ -1,14 +1,15 @@
 import { Grid } from "@mui/material";
 
 // middleContent's column space should be 8
-export default function GradientTriGrid({
+export default function TriGrid({
   middleContent,
   middleContentSX,
   spacing,
+  containerSX = undefined,
   variant = undefined,
 }) {
   return (
-    <Grid container>
+    <Grid container sx={containerSX}>
       <Grid
         container
         item

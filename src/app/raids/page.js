@@ -1,9 +1,18 @@
 "use client";
 import BeginnerAdvanced from "@/components/BeginnerAdvanced";
-import GradientTriGrid from "@/components/GradientTriGrid";
+import TriGrid from "@/components/TriGrid";
 import InfoCard from "@/components/InfoCard";
-import { Box, Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import {
+  Box,
+  Collapse,
+  Grid,
+  keyframes,
+  Paper,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useState, useEffect, useRef } from "react";
 
 const options = [
   {
@@ -15,7 +24,7 @@ const options = [
     title: "Yary",
     description:
       "This is the yary card. Yary yary yary yary yary yary yary yary yary yary yary yary yary",
-    collapsibleContent: "This is the collapsibles content",
+    collapsibleDescription: "This is the collapsibles content",
   },
   {
     title: "Pleeeeeee Pleeeeeee Pleeeeeee Pleeeeeee Pleeeeeee",
@@ -26,6 +35,8 @@ const options = [
     title: "Mad",
     description:
       "This is the mad card. Mad mad mad mad mad mad mad mad mad mad mad mad mad",
+    collapsibleDescription:
+      "Mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad",
   },
   {
     title: "Teeeg",
@@ -37,7 +48,7 @@ const options = [
     title: "Eeeeee",
     description:
       "This is the eeeeee card. Eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee",
-    collapsibleContent:
+    collapsibleDescription:
       "Whaaaaaaaaaaaaaaaaat. Eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee eeeeee",
   },
 ];
@@ -45,6 +56,22 @@ const options = [
 export default function RaidPage() {
   const [beginnerAdvanced, setBeginnerAdvanced] = useState("beginner");
   const [collapsibleContent, setCollapsibleContent] = useState([]);
+  const [oldCollapsibleContent, setOldCollapsibleContent] = useState([]);
+  const [columnNum, setColumnNum] = useState(3);
+  const theme = useTheme();
+
+  const large = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const bigSmall = useMediaQuery((theme) => theme.breakpoints.up("bgsm"));
+
+  useEffect(() => {
+    if (large) {
+      setColumnNum(3);
+    } else if (bigSmall) {
+      setColumnNum(2);
+    } else {
+      setColumnNum(1);
+    }
+  }, [large, bigSmall]);
 
   return (
     <>
@@ -70,25 +97,57 @@ export default function RaidPage() {
           setValue={setBeginnerAdvanced}
         />
       </Box>
-      <GradientTriGrid
+      <TriGrid
         middleContent={
           <>
             {options.map((option, index) => {
-              // Maybe here if there is an open card, iterate through each of the options and then at the end of it's row, create a new div of a collapsible
-              // and then make it xs={12} and let it open
-              console.log("oidjf", collapsibleContent);
-
+              // Once a new collapsibleContent is set, set oldCollapsibleContent so that when the old content
+              // is collapsing, it doesn't show the new content as it collapses
+              // console.log("oidjf", collapsibleContent);
+              const collapseIn =
+                collapsibleContent?.length &&
+                Math.ceil((collapsibleContent[0] + 1) / columnNum) ===
+                  Math.ceil((index + 1) / columnNum);
               return (
-                <Grid item xs={12} bgsm={6} lg={4} key={index} display="flex">
-                  <InfoCard
-                    title={option.title}
-                    description={option.description}
-                    index={index}
-                    setCollapsibleContent={setCollapsibleContent}
-                    collapsibleContent={option?.collapsibleContent}
-                    href={option?.href}
-                  />
-                </Grid>
+                <>
+                  <Grid item xs={12} bgsm={6} lg={4} key={index} display="flex">
+                    <InfoCard
+                      title={option.title}
+                      description={option.description}
+                      index={index}
+                      collapsibleDescription={option?.collapsibleDescription}
+                      setCollapsibleContent={setCollapsibleContent}
+                      collapsibleContent={collapsibleContent}
+                      setOldCollapsibleContent={setOldCollapsibleContent}
+                      oldCollapsibleContent={oldCollapsibleContent}
+                      href={option?.href}
+                    />
+                  </Grid>
+                  {((index + 1) % columnNum === 0 ||
+                    index === options.length - 1) && (
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{
+                        "&.MuiGrid-item": { p: 0 },
+                      }}
+                    >
+                      <Collapse in={collapseIn} unmountOnExit>
+                        {/* Maybe gotta do the transition on the height of the Typography as that is what's changing? */}
+                        <Paper
+                          elevation={10}
+                          sx={{ ml: 3, mt: 3, p: 2, borderRadius: "20px" }}
+                        >
+                          <Typography>
+                            {collapseIn
+                              ? collapsibleContent?.[1]
+                              : oldCollapsibleContent?.[1]}
+                          </Typography>
+                        </Paper>
+                      </Collapse>
+                    </Grid>
+                  )}
+                </>
               );
             })}
           </>
@@ -100,8 +159,26 @@ export default function RaidPage() {
           mt: 0,
         }}
         spacing={3}
-        variant={"gradient"}
+        // variant={"gradient"}
       />
     </>
   );
+}
+
+// {
+//   collapseIn ? (
+//     <Typography>{collapsibleContent?.[1]}</Typography>
+//   ) : (
+//     <Typography>
+//       {oldCollapsibleContent?.[1]}
+//     </Typography>
+//   );
+// }
+
+{
+  /* <Collapse in={collapseIn}>
+  <Typography>
+    {collapseIn ? collapsibleContent?.[1] : oldCollapsibleContent?.[1]}
+  </Typography>
+</Collapse>; */
 }

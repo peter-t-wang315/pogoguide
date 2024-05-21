@@ -1,4 +1,4 @@
-import GradientTriGrid from "@/components/GradientTriGrid";
+import TriGrid from "@/components/TriGrid";
 import HomePageCard from "@/components/HomePageCard";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
@@ -102,7 +102,7 @@ export default function Home() {
           Lets GO
         </Typography>
       </Box>
-      <GradientTriGrid
+      <TriGrid
         middleContent={
           <>
             <Grid
