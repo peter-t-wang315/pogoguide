@@ -6,14 +6,12 @@ import {
   Box,
   Collapse,
   Grid,
-  keyframes,
   Paper,
-  styled,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, createRef } from "react";
 import { TransitionGroup } from "react-transition-group";
 
 const options = [
@@ -66,6 +64,13 @@ export default function RaidPage() {
   const theme = useTheme();
   const large = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const bigSmall = useMediaQuery((theme) => theme.breakpoints.up("bgsm"));
+  const gridRefs = useRef([]);
+
+  useEffect(() => {
+    gridRefs.current = Array(options.length)
+      .fill()
+      .map((_, i) => gridRefs.current[i] || createRef());
+  }, []);
 
   useEffect(() => {
     if (large) {
@@ -77,8 +82,22 @@ export default function RaidPage() {
     }
   }, [large, bigSmall]);
 
+  // useEffect(() => {
+  //   scrollToIndex(collapsibleContent?.[0]);
+  // }, [collapsibleContent]);
+
   const getCurrRow = (num1) => {
     return Math.ceil(num1 / columnNum);
+  };
+
+  const scrollToIndex = () => {
+    const index = collapsibleContent?.[0];
+    if (gridRefs.current[index]) {
+      const element = gridRefs.current[index].current;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
   };
 
   return (
@@ -109,17 +128,21 @@ export default function RaidPage() {
         middleContent={
           <>
             {options.map((option, index) => {
-              // console.log("oidjf", collapsibleContent);
               const collapseIn =
                 collapsibleContent?.length &&
                 getCurrRow(collapsibleContent[0] + 1) === getCurrRow(index + 1);
 
-              console.log("Cur: ", collapsibleContent?.[0]);
-              console.log("Old: ", oldCollapsibleContent?.[0]);
-              console.log(`What: ${index}, ${collapseIn}`);
               return (
                 <>
-                  <Grid item xs={12} bgsm={6} lg={4} key={index} display="flex">
+                  <Grid
+                    item
+                    xs={12}
+                    bgsm={6}
+                    lg={4}
+                    key={index}
+                    display="flex"
+                    ref={gridRefs.current[index]}
+                  >
                     <InfoCard
                       title={option.title}
                       description={option.description}
@@ -147,6 +170,7 @@ export default function RaidPage() {
                             unmountOnExit
                             sx={{ pb: 1 }}
                             key={collapsibleContent[0]}
+                            onEntered={scrollToIndex}
                           >
                             <Paper
                               key={collapsibleContent[0]}
