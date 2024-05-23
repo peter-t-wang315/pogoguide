@@ -2,17 +2,9 @@
 import BeginnerAdvanced from "@/components/BeginnerAdvanced";
 import TriGrid from "@/components/TriGrid";
 import InfoCard from "@/components/InfoCard";
-import {
-  Box,
-  Collapse,
-  Grid,
-  Paper,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState, useEffect, useRef, createRef } from "react";
-import { TransitionGroup } from "react-transition-group";
+import InfoCollapsible from "@/components/InfoCollapsible";
 
 const options = [
   {
@@ -81,10 +73,6 @@ export default function RaidPage() {
       setColumnNum(1);
     }
   }, [large, bigSmall]);
-
-  // useEffect(() => {
-  //   scrollToIndex(collapsibleContent?.[0]);
-  // }, [collapsibleContent]);
 
   const getCurrRow = (num1) => {
     return Math.ceil(num1 / columnNum);
@@ -164,33 +152,12 @@ export default function RaidPage() {
                         "&.MuiGrid-item": { p: 0 },
                       }}
                     >
-                      <TransitionGroup>
-                        {collapseIn ? (
-                          <Collapse
-                            unmountOnExit
-                            sx={{ pb: 1 }}
-                            key={collapsibleContent[0]}
-                            onEntered={scrollToIndex}
-                          >
-                            <Paper
-                              key={collapsibleContent[0]}
-                              elevation={8}
-                              sx={{
-                                ml: 3,
-                                mt: 3,
-                                p: 2,
-                                borderRadius: "20px",
-                              }}
-                            >
-                              <Typography>
-                                {collapseIn
-                                  ? collapsibleContent?.[1]
-                                  : oldCollapsibleContent?.[1]}
-                              </Typography>
-                            </Paper>
-                          </Collapse>
-                        ) : null}
-                      </TransitionGroup>
+                      <InfoCollapsible
+                        collapseIn={collapseIn}
+                        collapsibleContent={collapsibleContent}
+                        oldCollapsibleContent={oldCollapsibleContent}
+                        scrollToIndex={scrollToIndex}
+                      />
                     </Grid>
                   )}
                 </>
