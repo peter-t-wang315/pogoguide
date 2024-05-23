@@ -8,11 +8,13 @@ import {
   Grid,
   keyframes,
   Paper,
+  styled,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { TransitionGroup } from "react-transition-group";
 
 const options = [
   {
@@ -24,19 +26,22 @@ const options = [
     title: "Yary",
     description:
       "This is the yary card. Yary yary yary yary yary yary yary yary yary yary yary yary yary",
-    collapsibleDescription: "This is the collapsibles content",
+    collapsibleDescription:
+      "RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
   },
   {
-    title: "Pleeeeeee Pleeeeeee Pleeeeeee Pleeeeeee Pleeeeeee",
+    title: "Pleeeeeee Pleeeeeee Pleeeeeee Pleeeeeee",
     description:
       "This is the pleeeeeee card. Pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee",
+    collapsibleDescription:
+      "Pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee pleeeeeee ",
   },
   {
     title: "Mad",
     description:
       "This is the mad card. Mad mad mad mad mad mad mad mad mad mad mad mad mad",
     collapsibleDescription:
-      "Mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad",
+      "Mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad mad",
   },
   {
     title: "Teeeg",
@@ -59,7 +64,6 @@ export default function RaidPage() {
   const [oldCollapsibleContent, setOldCollapsibleContent] = useState([]);
   const [columnNum, setColumnNum] = useState(3);
   const theme = useTheme();
-
   const large = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const bigSmall = useMediaQuery((theme) => theme.breakpoints.up("bgsm"));
 
@@ -72,6 +76,10 @@ export default function RaidPage() {
       setColumnNum(1);
     }
   }, [large, bigSmall]);
+
+  const getCurrRow = (num1) => {
+    return Math.ceil(num1 / columnNum);
+  };
 
   return (
     <>
@@ -101,13 +109,14 @@ export default function RaidPage() {
         middleContent={
           <>
             {options.map((option, index) => {
-              // Once a new collapsibleContent is set, set oldCollapsibleContent so that when the old content
-              // is collapsing, it doesn't show the new content as it collapses
               // console.log("oidjf", collapsibleContent);
               const collapseIn =
                 collapsibleContent?.length &&
-                Math.ceil((collapsibleContent[0] + 1) / columnNum) ===
-                  Math.ceil((index + 1) / columnNum);
+                getCurrRow(collapsibleContent[0] + 1) === getCurrRow(index + 1);
+
+              console.log("Cur: ", collapsibleContent?.[0]);
+              console.log("Old: ", oldCollapsibleContent?.[0]);
+              console.log(`What: ${index}, ${collapseIn}`);
               return (
                 <>
                   <Grid item xs={12} bgsm={6} lg={4} key={index} display="flex">
@@ -132,19 +141,32 @@ export default function RaidPage() {
                         "&.MuiGrid-item": { p: 0 },
                       }}
                     >
-                      <Collapse in={collapseIn} unmountOnExit>
-                        {/* Maybe gotta do the transition on the height of the Typography as that is what's changing? */}
-                        <Paper
-                          elevation={10}
-                          sx={{ ml: 3, mt: 3, p: 2, borderRadius: "20px" }}
-                        >
-                          <Typography>
-                            {collapseIn
-                              ? collapsibleContent?.[1]
-                              : oldCollapsibleContent?.[1]}
-                          </Typography>
-                        </Paper>
-                      </Collapse>
+                      <TransitionGroup>
+                        {collapseIn ? (
+                          <Collapse
+                            unmountOnExit
+                            sx={{ pb: 1 }}
+                            key={collapsibleContent[0]}
+                          >
+                            <Paper
+                              key={collapsibleContent[0]}
+                              elevation={8}
+                              sx={{
+                                ml: 3,
+                                mt: 3,
+                                p: 2,
+                                borderRadius: "20px",
+                              }}
+                            >
+                              <Typography>
+                                {collapseIn
+                                  ? collapsibleContent?.[1]
+                                  : oldCollapsibleContent?.[1]}
+                              </Typography>
+                            </Paper>
+                          </Collapse>
+                        ) : null}
+                      </TransitionGroup>
                     </Grid>
                   )}
                 </>
@@ -163,22 +185,4 @@ export default function RaidPage() {
       />
     </>
   );
-}
-
-// {
-//   collapseIn ? (
-//     <Typography>{collapsibleContent?.[1]}</Typography>
-//   ) : (
-//     <Typography>
-//       {oldCollapsibleContent?.[1]}
-//     </Typography>
-//   );
-// }
-
-{
-  /* <Collapse in={collapseIn}>
-  <Typography>
-    {collapseIn ? collapsibleContent?.[1] : oldCollapsibleContent?.[1]}
-  </Typography>
-</Collapse>; */
 }

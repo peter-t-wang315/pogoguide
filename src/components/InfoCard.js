@@ -21,7 +21,7 @@ export default function InfoCard({
         collapsibleContent.length === 0
           ? 5
           : index === collapsibleContent[0]
-          ? 20
+          ? 15
           : 2
       }
       sx={{
@@ -34,7 +34,7 @@ export default function InfoCard({
         ...(collapsibleDescription || href
           ? {
               "&:hover": {
-                boxShadow: 20,
+                boxShadow: 15,
                 cursor: "pointer",
                 backgroundColor: "background.dark",
               },
