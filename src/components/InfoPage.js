@@ -24,9 +24,17 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
   }, []);
 
   useEffect(() => {
-    beginnerAdvanced === "beginner"
-      ? setCards(beginnerCards)
-      : setCards(advancedCards);
+    if (beginnerAdvanced === "beginner") {
+      setCards(beginnerCards);
+      gridRefs.current = Array(beginnerCards.length)
+        .fill()
+        .map((_, i) => gridRefs.current[i] || createRef());
+    } else {
+      setCards(advancedCards);
+      gridRefs.current = Array(advancedCards.length)
+        .fill()
+        .map((_, i) => gridRefs.current[i] || createRef());
+    }
     setCollapsibleContent([]);
     setOldCollapsibleContent([]);
   }, [beginnerAdvanced]);
@@ -64,7 +72,7 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
         justifyContent={"center"}
         alignItems={"center"}
         pt={5}
-        pb={4}
+        pb={5.5}
         px={2}
         color={"primary.foreground"}
       >
@@ -82,11 +90,14 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
       <TriGrid
         middleContent={
           <>
-            {cards.map((option, index) => {
+            {cards.map((card, index) => {
               const collapseIn =
                 collapsibleContent?.length &&
                 getCurrRow(collapsibleContent[0] + 1) === getCurrRow(index + 1);
 
+              // console.log("Colapse: ", collapseIn);
+              // console.log("CollapsibleConten: ", collapsibleContent);
+              // console.log("Old CollapsibleContent: ", oldCollapsibleContent);
               return (
                 <>
                   <Grid
@@ -99,15 +110,14 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
                     ref={gridRefs.current[index]}
                   >
                     <InfoCard
-                      title={option.title}
-                      description={option.description}
+                      title={card.title}
+                      description={card.description}
                       index={index}
-                      collapsibleDescription={option?.collapsibleDescription}
+                      collapsibleDescription={card?.collapsibleDescription}
                       setCollapsibleContent={setCollapsibleContent}
                       collapsibleContent={collapsibleContent}
                       setOldCollapsibleContent={setOldCollapsibleContent}
-                      oldCollapsibleContent={oldCollapsibleContent}
-                      href={option?.href}
+                      href={card?.href}
                     />
                   </Grid>
                   {((index + 1) % columnNum === 0 ||

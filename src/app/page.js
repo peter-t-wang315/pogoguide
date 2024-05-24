@@ -143,6 +143,7 @@ export default function Home() {
         }}
         spacing={3}
         variant={"gradient"}
+        heavySpacing={true}
       />
     </>
   );

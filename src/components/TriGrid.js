@@ -7,6 +7,7 @@ export default function TriGrid({
   spacing,
   containerSX = undefined,
   variant = undefined,
+  heavySpacing = false,
 }) {
   return (
     <Grid container sx={containerSX}>
@@ -15,8 +16,8 @@ export default function TriGrid({
         item
         xs={0.5}
         md={1}
-        lg={2}
-        xl={2.25}
+        lg={heavySpacing ? 2 : 1}
+        xl={heavySpacing ? 2.25 : 1}
         variant={variant}
       ></Grid>
       <Grid
@@ -24,8 +25,8 @@ export default function TriGrid({
         item
         xs={11}
         md={10}
-        lg={8}
-        xl={7.5}
+        lg={heavySpacing ? 8 : 10}
+        xl={heavySpacing ? 7.5 : 10}
         variant={variant}
         spacing={spacing}
         sx={middleContentSX}
@@ -37,8 +38,8 @@ export default function TriGrid({
         item
         xs={0.5}
         md={1}
-        lg={2}
-        xl={2.25}
+        lg={heavySpacing ? 2 : 1}
+        xl={heavySpacing ? 2.25 : 1}
         variant={variant}
       ></Grid>
     </Grid>

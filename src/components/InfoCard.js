@@ -11,7 +11,6 @@ export default function InfoCard({
   setCollapsibleContent,
   collapsibleContent,
   setOldCollapsibleContent,
-  oldCollapsibleContent,
   href = undefined,
 }) {
   const { push } = useRouter();
@@ -27,8 +26,8 @@ export default function InfoCard({
       sx={{
         display: "flex",
         flexDirection: "column",
-        py: 2,
-        px: 2.5,
+        py: 2.5,
+        px: 3.5,
         borderRadius: "20px",
         position: "relative",
         ...(collapsibleDescription || href
@@ -78,6 +77,7 @@ export default function InfoCard({
               xl: "normal",
               xs: "normal",
             },
+            pb: 1,
           }}
         >
           {title}
