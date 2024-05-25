@@ -2,10 +2,12 @@ import { Box, Paper, Typography } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useRouter } from "next/navigation";
+import DoubleList from "./DoubleList";
 
 export default function InfoCard({
   title,
   description,
+  listContent = undefined,
   index,
   collapsibleDescription = undefined,
   setCollapsibleContent,
@@ -77,7 +79,7 @@ export default function InfoCard({
               xl: "normal",
               xs: "normal",
             },
-            pb: 1,
+            pb: 2,
           }}
         >
           {title}
@@ -93,6 +95,7 @@ export default function InfoCard({
         ) : null}
       </Box>
       <Typography>{description}</Typography>
+      {listContent && <DoubleList listContent={listContent} />}
     </Paper>
   );
 }

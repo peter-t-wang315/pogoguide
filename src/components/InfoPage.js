@@ -112,6 +112,7 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
                     <InfoCard
                       title={card.title}
                       description={card.description}
+                      listContent={card?.listContent}
                       index={index}
                       collapsibleDescription={card?.collapsibleDescription}
                       setCollapsibleContent={setCollapsibleContent}

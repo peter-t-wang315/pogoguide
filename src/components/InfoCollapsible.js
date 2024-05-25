@@ -1,5 +1,6 @@
 import { Collapse, Paper, Typography } from "@mui/material";
 import { TransitionGroup } from "react-transition-group";
+import DoubleList from "./DoubleList";
 
 export default function InfoCollapsible({
   collapseIn,
@@ -7,6 +8,10 @@ export default function InfoCollapsible({
   oldCollapsibleContent,
   scrollToIndex,
 }) {
+  const content = collapseIn
+    ? collapsibleContent?.[1]
+    : oldCollapsibleContent?.[1];
+
   return (
     <TransitionGroup>
       {collapseIn ? (
@@ -26,11 +31,10 @@ export default function InfoCollapsible({
               borderRadius: "20px",
             }}
           >
-            <Typography>
-              {collapseIn
-                ? collapsibleContent?.[1]
-                : oldCollapsibleContent?.[1]}
-            </Typography>
+            <Typography>{content.description}</Typography>
+            {content?.type === "divider" || content?.type === "twoList" ? (
+              <DoubleList listContent={content} />
+            ) : null}
           </Paper>
         </Collapse>
       ) : null}
