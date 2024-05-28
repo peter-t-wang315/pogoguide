@@ -47,6 +47,7 @@ const theme = createTheme({
       white: themeVariables.white,
       black: themeVariables.black,
       gray: themeVariables.gray,
+      "dark-gray": themeVariables.darkGray,
     },
   },
   components: {

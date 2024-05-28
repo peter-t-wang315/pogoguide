@@ -14,4 +14,5 @@ export const themeVariables = {
   black: "#212427",
   white: "#FFF",
   gray: "#efefef",
+  darkGray: "#d6d6d6",
 };

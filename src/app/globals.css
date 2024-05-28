@@ -9,7 +9,8 @@
   --primary-light: #b8c1ce;
   --primary-foreground: #fff;
   --primary-foreground-dark: #eef0f5;
-  --black: "#212427";
-  --white: "#FFF";
-  --gray: "#efefef";
+  --black: #212427;
+  --white: #fff;
+  --gray: #efefef;
+  --dark-gray: #d6d6d6;
 }
