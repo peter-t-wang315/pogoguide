@@ -27,7 +27,8 @@ export default function InfoCollapsible({
             sx={{
               ml: 3,
               mt: 3,
-              p: 2,
+              py: 2.5,
+              px: 3.5,
               borderRadius: "20px",
             }}
           >

@@ -1,4 +1,11 @@
-import { Box, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 
 export default function DoubleList({ listContent }) {
@@ -45,7 +52,7 @@ const DividerList = ({ leftContent, rightContent }) => (
   <Box sx={{ display: "flex" }}>
     <List dense={true}>
       {leftContent.map((content, index) => (
-        <ListItem key={index} sx={{ mt: -1 }}>
+        <ListItem key={index} sx={{ mt: -1, pr: 0 }}>
           <ListItemIcon sx={{ mt: 1.4, ml: -2, alignSelf: "flex-start" }}>
             <CircleIcon color="primary" sx={{ fontSize: 6 }} />
           </ListItemIcon>
@@ -53,6 +60,12 @@ const DividerList = ({ leftContent, rightContent }) => (
         </ListItem>
       ))}
     </List>
+    <Divider
+      orientation="vertical"
+      variant="middle"
+      flexItem
+      sx={{ backgroundColor: "common.dark-gray", mx: 3, my: 0.75 }}
+    />
     <List dense={true}>
       {rightContent.map((content, index) => (
         <ListItem key={index} sx={{ mt: -1 }}>
