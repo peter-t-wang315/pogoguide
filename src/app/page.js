@@ -93,7 +93,7 @@ export default function Home() {
         color={"primary.foreground"}
       >
         <Typography
-          sx={{ typography: { xs: "h4", bgsm: "h3", md: "h3" } }}
+          sx={{ typography: { xs: "h5", smsm: "h4", bgsm: "h3" } }}
           align="center"
         >
           Welcome to PoGo Guide. <br />
