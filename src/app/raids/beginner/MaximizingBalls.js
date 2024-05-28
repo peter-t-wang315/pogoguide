@@ -1,7 +1,7 @@
 const MaximizingBalls = {
   title: "Maximizing Balls",
   description:
-    "It is possible to obtain 24 premier balls to catch the raid boss with. Here are the factors that play into this number",
+    "It is possible to obtain 24 premier balls to catch the raid boss with. Here are the factors that play into this number:",
   listContent: {
     type: "twoList",
     content: [
@@ -22,7 +22,13 @@ const MaximizingBalls = {
       "Individual damage contribution",
       "Gym control",
     ],
-    right: [""],
+    right: [
+      "+6 balls",
+      "Great/+1, Ultra/+2, Best/+4 balls",
+      "+2-8 balls",
+      "+0-4 balls",
+      "+2 balls",
+    ],
   },
 };
 
