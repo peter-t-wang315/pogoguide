@@ -1,8 +1,12 @@
 import InfoPage from "@/components/InfoPage";
-import MakeRaidParties from "./MakeRaidParties";
-import HiddenBallMultiplier from "./HiddenBallMultiplier";
-import ActivateMega from "./ActivateMega";
-import MaximizingBalls from "./MaximizingBalls";
+import MakeRaidParties from "./beginner/MakeRaidParties";
+import HiddenBallMultiplier from "./beginner/HiddenBallMultiplier";
+import ActivateMega from "./beginner/ActivateMega";
+import MaximizingBalls from "./beginner/MaximizingBalls";
+import SendInvites from "./beginner/SendInvites";
+import PartyPlay from "./beginner/PartyPlay";
+import RaidCatchCP from "./beginner/RaidCatchCP";
+import ShinyRaidBoss from "./beginner/ShinyRaidBoss";
 
 const options2 = [
   {
@@ -67,6 +71,10 @@ export default function RaidPage() {
     HiddenBallMultiplier,
     ActivateMega,
     MaximizingBalls,
+    SendInvites,
+    PartyPlay,
+    RaidCatchCP,
+    ShinyRaidBoss,
   ];
   return <InfoPage beginnerCards={options} advancedCards={options2} />;
 }
