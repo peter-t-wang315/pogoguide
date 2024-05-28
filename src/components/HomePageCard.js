@@ -11,7 +11,7 @@ export default function HomePageCard({ img, altImg, title, link }) {
       sx={{
         display: "flex",
         flexDirection: "row",
-        py: 1,
+        py: 0.25,
         borderRadius: "20px",
         position: "relative",
         overflow: "hidden",
@@ -28,7 +28,7 @@ export default function HomePageCard({ img, altImg, title, link }) {
         sx={{
           position: "absolute",
           top: 60,
-          left: -35,
+          left: -30,
           width: "200%",
           height: "110%",
           backgroundColor: "primary.light",

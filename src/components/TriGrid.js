@@ -14,19 +14,19 @@ export default function TriGrid({
       <Grid
         container
         item
-        xs={0.5}
-        md={1}
-        lg={heavySpacing ? 2 : 1}
-        xl={heavySpacing ? 2.25 : 1}
+        xs={heavySpacing ? 1.5 : 0.75}
+        smsm={heavySpacing ? 2 : 0.75}
+        bgsm={heavySpacing ? 1 : 0.75}
+        lg={heavySpacing ? 2.25 : 1}
         variant={variant}
       ></Grid>
       <Grid
         container
         item
-        xs={11}
-        md={10}
-        lg={heavySpacing ? 8 : 10}
-        xl={heavySpacing ? 7.5 : 10}
+        xs={heavySpacing ? 9 : 10.5}
+        smsm={heavySpacing ? 8 : 10.5}
+        bgsm={heavySpacing ? 10 : 10.5}
+        lg={heavySpacing ? 7.5 : 10}
         variant={variant}
         spacing={spacing}
         sx={middleContentSX}
@@ -36,10 +36,10 @@ export default function TriGrid({
       <Grid
         container
         item
-        xs={0.5}
-        md={1}
-        lg={heavySpacing ? 2 : 1}
-        xl={heavySpacing ? 2.25 : 1}
+        xs={heavySpacing ? 1.5 : 0.75}
+        smsm={heavySpacing ? 2 : 0.75}
+        bgsm={heavySpacing ? 1 : 0.75}
+        lg={heavySpacing ? 2.25 : 1}
         variant={variant}
       ></Grid>
     </Grid>
