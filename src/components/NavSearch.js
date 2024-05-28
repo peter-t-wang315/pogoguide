@@ -16,7 +16,7 @@ export default function NavSearch() {
     { name: "Catching" },
     { name: "Friendship" },
     { name: "Incense" },
-    { name: "Pokemon Storage" },
+    { name: "Pokémon Storage" },
     { name: "Item Storage" },
     { name: "Trades" },
     { name: "Gyms" },

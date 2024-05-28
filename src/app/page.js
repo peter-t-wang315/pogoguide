@@ -98,7 +98,7 @@ export default function Home() {
         >
           Welcome to PoGo Guide. <br />
           The all in one stop shop for <br />
-          Pokemon Go tips. <br />
+          Pokémon Go tips. <br />
           Lets GO
         </Typography>
       </Box>
