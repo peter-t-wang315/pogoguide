@@ -1,7 +1,7 @@
 "use client";
 
-import { IconButton, Stack, useMediaQuery, useTheme } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import NavDrawer from "./NavDrawer";
 
 export default function NavLinks({}) {
   const theme = useTheme();
@@ -13,9 +13,7 @@ export default function NavLinks({}) {
   ];
 
   return medium ? (
-    <IconButton>
-      <MenuIcon />
-    </IconButton>
+    <NavDrawer />
   ) : (
     <Stack direction="row" spacing={{ xs: 2, lg: 4 }}>
       <p>Categories</p>

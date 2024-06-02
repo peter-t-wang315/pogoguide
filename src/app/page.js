@@ -2,6 +2,7 @@ import TriGrid from "@/components/TriGrid";
 import HomePageCard from "@/components/HomePageCard";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
+import categories from "./InfoCategories";
 
 // https://www.deviantart.com/jormxdos/gallery/84991095/pokemon-go-medal
 // https://bulbapedia.bulbagarden.net/wiki/Medal_(GO)
@@ -11,76 +12,6 @@ import React from "react";
 // https://digitalcricut.com/cdn/shop/products/bundle-cricut-file-silhouette-cameo-cartoon-svg-293_grande.jpg?v=1658391364
 
 export default function Home() {
-  const categories = [
-    {
-      title: "Raids",
-      img: "/medal/Champion.png",
-      altImg: "Champion Medal",
-      link: "/raids",
-    },
-    {
-      title: "Catching",
-      img: "/medal/Collector.png",
-      altImg: "Collector Medal",
-      link: "/catching",
-    },
-    {
-      title: "Friendship",
-      img: "/medal/Idol.png",
-      altImg: "Idol Image",
-      link: "/friendship",
-    },
-    {
-      title: "Incense",
-      img: "/IncenseImage.png",
-      altImg: "Incense Image",
-      link: "/incense",
-    },
-    {
-      title: "Pokemon Storage",
-      img: "/StorageImage.png",
-      altImg: "Storage Image",
-      link: "/pokemonStorage",
-    },
-    {
-      title: "Item Storage",
-      img: "/ItemImage.png",
-      altImg: "Item Image",
-      link: "/itemStorage",
-    },
-    {
-      title: "Trades",
-      img: "/medal/Gentleman.png",
-      altImg: "Gentleman Medal",
-      link: "/trades",
-    },
-    {
-      title: "Gyms",
-      img: "/medal/GymLeader.png",
-      altImg: "Gym Leader Medal",
-      link: "/gyms",
-    },
-    {
-      title: "PvP",
-      // img: "/GoBattleLeagueImage.png",
-      img: "/medal/PvP.png",
-      altImg: "Battle League Image",
-      link: "/pvp",
-    },
-    {
-      title: "Shinies",
-      img: "/ShinyImage.png",
-      altImg: "Shiny Image",
-      link: "/shinies",
-    },
-    {
-      title: "Shadow",
-      img: "/ShadowImage.png",
-      altImg: "Shadow Image",
-      link: "/shadow",
-    },
-    { title: "IVs", img: "/IVImage.png", altImg: "IV Image", link: "/ivs" },
-  ];
   return (
     <>
       <Box
