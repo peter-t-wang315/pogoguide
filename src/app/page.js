@@ -63,7 +63,7 @@ export default function Home() {
     {
       title: "PvP",
       // img: "/GoBattleLeagueImage.png",
-      img: "/medal/pvp.png",
+      img: "/medal/PvP.png",
       altImg: "Battle League Image",
       link: "/pvp",
     },
