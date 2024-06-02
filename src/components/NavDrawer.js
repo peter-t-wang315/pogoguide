@@ -1,5 +1,6 @@
 "use client";
 import {
+  Divider,
   Drawer,
   IconButton,
   List,
@@ -22,14 +23,21 @@ export default function NavDrawer({}) {
   return (
     <IconButton onClick={() => setOpen(!open)}>
       <MenuIcon />
-      <Drawer open={open} onClose={() => setOpen(!open)}>
-        <List>
+      <Drawer
+        anchor="top"
+        open={open}
+        onClose={() => setOpen(!open)}
+        sx={{ zIndex: 2 }}
+      >
+        <List sx={{ mt: 9 }}>
           {options.map((option, index) => (
-            <ListItem key={option.name}>
-              <ListItemButton>
-                <ListItemText primary={option.name} />
-              </ListItemButton>
-            </ListItem>
+            <>
+              <ListItem key={option.name} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={option.name} />
+                </ListItemButton>
+              </ListItem>
+            </>
           ))}
         </List>
       </Drawer>
