@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import NavSearch from "./NavSearch";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
@@ -16,19 +16,19 @@ export default async function MainNav() {
         alignItems: "center",
         justifyContent: "center",
         py: 2,
-        px: { xs: 0, sm: 2, lg: 15, xl: 30 },
+        px: { xs: 0, lg: 20, xl: 30 },
         backgroundColor: "background.default",
         boxShadow: 5,
         zIndex: 1000,
       }}
     >
-      <Grid item xs={3.5} sm={3}>
+      <Grid item xs={2} lg={3}>
         <NavLinks />
       </Grid>
       <Grid
         item
-        xs={4}
-        sm={3}
+        xs={6}
+        lg={5}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -43,13 +43,20 @@ export default async function MainNav() {
             color: "var(--foreground)",
           }}
         >
-          <Typography variant="h5">PoGo Guide</Typography>
+          <Typography
+            sx={{
+              typography: { xs: "h6", smsm: "h5" },
+              fontWeight: { xs: "normal", smsm: "normal" },
+            }}
+          >
+            PoGo Guide
+          </Typography>
         </Link>
       </Grid>
       <Grid
         item
-        xs={3.5}
-        sm={3}
+        xs={2}
+        lg={3}
         sx={{
           display: "flex",
           alignItems: "center",
