@@ -3,9 +3,10 @@ import NavSearch from "./NavSearch";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 
-export default async function MainNav() {
+export default function MainNav() {
   // TO DO: Make it so that when the user is on phone, that the search bar turns into the icon and then
   // can change the entire nav. Look at MUI docs on phone
+
   return (
     <Grid
       container

@@ -10,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function NavSearch() {
   const theme = useTheme();
-  const medium = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const medium = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const options = [
     { name: "Raids" },
     { name: "Catching" },
@@ -27,10 +27,6 @@ export default function NavSearch() {
   ];
 
   return medium ? (
-    <IconButton>
-      <SearchIcon />
-    </IconButton>
-  ) : (
     <Autocomplete
       id="search"
       freeSolo
@@ -38,5 +34,9 @@ export default function NavSearch() {
       renderInput={(params) => <TextField {...params} placeholder="Search" />}
       sx={{ minWidth: "150px" }}
     />
+  ) : (
+    <IconButton>
+      <SearchIcon />
+    </IconButton>
   );
 }

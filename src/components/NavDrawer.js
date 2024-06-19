@@ -13,7 +13,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import categories from "@/app/InfoCategories";
 import { useRouter } from "next/navigation";
 
@@ -21,15 +21,43 @@ export default function NavDrawer({}) {
   const [open, setOpen] = useState(false);
   const [collapseIndex, setCollapseIndex] = useState(null);
   const { push } = useRouter();
+  const drawerButtonRef = useRef();
+  const listItemsRef = useRef();
   const options = [
     { name: "Categories", sections: categories },
     { name: "Pages" },
     { name: "Contribute" },
   ];
 
+  const handleDocumentClick = (event) => {
+    if (
+      !drawerButtonRef.current.contains(event.target) &&
+      listItemsRef.current &&
+      !listItemsRef.current.contains(event.target)
+    ) {
+      setCollapseIndex(null);
+      setOpen(false);
+      console.log("Yuh");
+    } else {
+      console.log("Penis");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
   return (
     <>
-      <IconButton onClick={() => setOpen(!open)}>
+      <IconButton
+        onClick={() => {
+          setOpen(!open);
+        }}
+        ref={drawerButtonRef}
+      >
         <MenuIcon />
       </IconButton>
       <Drawer
@@ -37,11 +65,13 @@ export default function NavDrawer({}) {
         open={open}
         onClose={() => {
           setCollapseIndex(null);
-          setOpen(!open);
+          setOpen(false);
         }}
-        sx={{ zIndex: 2 }}
+        sx={{
+          zIndex: 2,
+        }}
       >
-        <List sx={{ mt: 9, pb: 0 }}>
+        <List sx={{ mt: 9, pb: 0 }} ref={listItemsRef}>
           {options.map((option, index) => (
             <>
               <ListItem
