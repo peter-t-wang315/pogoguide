@@ -11,8 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import { CustomDownCaretIcon, CustomUpCaretIcon } from "./UpDownCaret";
 import { useEffect, useState, useRef } from "react";
 import categories from "@/app/InfoCategories";
 import { useRouter } from "next/navigation";
@@ -29,17 +28,17 @@ export default function NavDrawer({}) {
     { name: "Contribute" },
   ];
 
+  // Check to see if when the navbar is down, did we click where we're supposed to
   const handleDocumentClick = (event) => {
     if (
-      !drawerButtonRef.current.contains(event.target) &&
-      listItemsRef.current &&
-      !listItemsRef.current.contains(event.target)
+      !drawerButtonRef.current.contains(event.target) && // Makes it so that if our last click was on the menu button, don't enter the if
+      listItemsRef.current && // If the dropdown list is open
+      !listItemsRef.current.contains(event.target) && // Since it's open, are we clicking inside? If no, exit the dropdown menu
+      event.target.id !== "up-caret" && // Did we click on the carets inside of the listItemsRef
+      event.target.id !== "down-caret"
     ) {
       setCollapseIndex(null);
       setOpen(false);
-      console.log("Yuh");
-    } else {
-      console.log("Penis");
     }
   };
 
@@ -52,12 +51,7 @@ export default function NavDrawer({}) {
 
   return (
     <>
-      <IconButton
-        onClick={() => {
-          setOpen(!open);
-        }}
-        ref={drawerButtonRef}
-      >
+      <IconButton onClick={() => setOpen(!open)} ref={drawerButtonRef}>
         <MenuIcon />
       </IconButton>
       <Drawer
@@ -71,7 +65,7 @@ export default function NavDrawer({}) {
           zIndex: 2,
         }}
       >
-        <List sx={{ mt: 9, pb: 0 }} ref={listItemsRef}>
+        <List sx={{ mt: 9, py: 0 }} ref={listItemsRef}>
           {options.map((option, index) => (
             <>
               <ListItem
@@ -84,9 +78,15 @@ export default function NavDrawer({}) {
                 <ListItemButton sx={{ px: 3 }}>
                   <ListItemText primary={option.name} />
                   {collapseIndex === index ? (
-                    <ExpandLess sx={{ color: "common.dark-gray" }} />
+                    <CustomUpCaretIcon
+                      sx={{ color: "common.dark-gray" }}
+                      id={"down-caret"}
+                    />
                   ) : (
-                    <ExpandMore sx={{ color: "common.dark-gray" }} />
+                    <CustomDownCaretIcon
+                      sx={{ color: "common.dark-gray" }}
+                      id={"up-caret"}
+                    />
                   )}
                 </ListItemButton>
               </ListItem>
