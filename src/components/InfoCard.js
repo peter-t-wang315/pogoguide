@@ -126,7 +126,7 @@ export default function InfoCard({
             },
             mt: 1,
             mb: -2.2,
-            "&>.mui-qywfm8-MuiDivider-wrapper": {
+            "&>.MuiDivider-wrapper": {
               p: 0,
               mx: -0.34,
             },
