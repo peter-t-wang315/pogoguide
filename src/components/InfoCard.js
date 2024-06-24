@@ -6,7 +6,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useRouter } from "next/navigation";
@@ -82,7 +82,8 @@ export default function InfoCard({
         sx={{
           mt: -3,
           mx: -4,
-          backgroundColor: "primary.light",
+          pb: 1,
+          backgroundColor: "pokeball.red",
         }}
       >
         <Box
@@ -103,44 +104,47 @@ export default function InfoCard({
                 xl: "normal",
                 xs: "normal",
               },
+              color: "primary.foreground",
             }}
           >
             {title}
           </Typography>
           {collapsibleDescription ? (
             <InfoOutlinedIcon
-              sx={{ color: "primary.dark", fontSize: 18, mt: 0.5 }}
+              sx={{ color: "primary.foreground", fontSize: 18, mt: 0.5 }}
             />
           ) : href ? (
             <DescriptionOutlinedIcon
-              sx={{ color: "primary.dark", fontSize: 18, mt: 0.5 }}
+              sx={{ color: "primary.foreground", fontSize: 18, mt: 0.5 }}
             />
           ) : null}
         </Box>
         <Divider
           sx={{
             "&::before, &::after": {
-              borderColor: "primary.dark",
+              borderColor: "pokeball.black",
             },
-            mb: -1.6,
+            mt: 1,
+            mb: -2.2,
             "&>.mui-qywfm8-MuiDivider-wrapper": {
               p: 0,
               mx: -0.34,
             },
+            borderBottomWidth: "50px",
           }}
         >
           <Avatar
             sx={{
               backgroundColor: "background.default",
-              border: `3px solid ${theme.palette.primary.main}`,
-              width: 20,
-              height: 20,
+              border: `2px solid ${theme.palette.pokeball.black}`,
+              width: 17,
+              height: 17,
             }}
           >
-            <CircleIcon
+            <RadioButtonUncheckedIcon
               sx={{
-                color: "primary.main",
-                fontSize: 16,
+                color: "pokeball.black",
+                fontSize: 15,
               }}
             />
           </Avatar>

@@ -2,7 +2,14 @@
 import BeginnerAdvanced from "@/components/BeginnerAdvanced";
 import TriGrid from "@/components/TriGrid";
 import InfoCard from "@/components/InfoCard";
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  darken,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useState, useEffect, useRef, createRef } from "react";
 import InfoCollapsible from "@/components/InfoCollapsible";
 
@@ -66,15 +73,17 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
   return (
     <>
       <Box
-        display={"flex"}
-        flexDirection={"column"}
-        backgroundColor={"primary.main"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        pt={5}
-        pb={5.5}
-        px={2}
-        color={"primary.foreground"}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: darken(theme.palette.pokeball.red, 0.1),
+          justifyContent: "center",
+          alignItems: "center",
+          pt: 5,
+          pb: 5.5,
+          px: 2,
+          color: theme.palette.primary.foreground,
+        }}
       >
         <Typography
           sx={{ typography: { xs: "h4", bgsm: "h3", md: "h3" }, mb: 3 }}

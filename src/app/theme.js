@@ -49,6 +49,11 @@ const theme = createTheme({
       gray: themeVariables.gray,
       "dark-gray": themeVariables.darkGray,
     },
+    pokeball: {
+      red: themeVariables.pokeballRed,
+      black: themeVariables.pokeballBlack,
+      gray: themeVariables.pokeballGray,
+    },
   },
   components: {
     MuiAutocomplete: {
@@ -108,7 +113,7 @@ const theme = createTheme({
             paddingTop: 6,
             paddingBottom: 6,
             borderRadius: 18,
-            color: themeVariables.primaryDark,
+            color: themeVariables.foreground,
           },
         },
       ],
