@@ -1,5 +1,12 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useRouter } from "next/navigation";
@@ -16,6 +23,7 @@ export default function InfoCard({
   setOldCollapsibleContent,
   href = undefined,
 }) {
+  const theme = useTheme();
   const { push } = useRouter();
   return (
     <Paper
@@ -114,39 +122,28 @@ export default function InfoCard({
             "&::before, &::after": {
               borderColor: "primary.dark",
             },
-            mb: -2.4,
+            mb: -1.6,
             "&>.mui-qywfm8-MuiDivider-wrapper": {
               p: 0,
               mx: -0.34,
             },
           }}
         >
-          <RadioButtonCheckedIcon
+          <Avatar
             sx={{
-              color: "primary.main",
-              mt: 0.4,
-              fontSize: 30,
-            }}
-          />
-          {/* <Box
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 26, // Adjust size as needed
-              height: 26, // Adjust size as needed
-              borderRadius: "50%",
-              backgroundColor: "white", // Set the background color to white
-              overflow: "hidden", // Ensure any overflow is hidden
+              backgroundColor: "background.default",
+              border: `3px solid ${theme.palette.primary.main}`,
+              width: 20,
+              height: 20,
             }}
           >
-            <RadioButtonCheckedIcon
+            <CircleIcon
               sx={{
                 color: "primary.main",
-                fontSize: 30,
+                fontSize: 16,
               }}
             />
-          </Box> */}
+          </Avatar>
         </Divider>
       </Box>
       <Typography sx={{ mt: 3 }}>{description}</Typography>
