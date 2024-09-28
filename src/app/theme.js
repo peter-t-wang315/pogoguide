@@ -53,6 +53,8 @@ const theme = createTheme({
       red: themeVariables.pokeballRed,
       black: themeVariables.pokeballBlack,
       gray: themeVariables.pokeballGray,
+      purple: themeVariables.pokeballPurple,
+      lightPurple: themeVariables.pokeballLightPurple,
     },
   },
   components: {

@@ -17,4 +17,6 @@ export const themeVariables = {
   darkGray: "#d6d6d6",
   pokeballRed: "#db5856",
   pokeballBlack: "#222224",
+  pokeballPurple: "#6f42c1",
+  pokeballLightPurple: "#d896db",
 };

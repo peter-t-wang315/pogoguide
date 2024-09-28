@@ -11,6 +11,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useRouter } from "next/navigation";
 import DoubleList from "./DoubleList";
+import { MasterBallStyle, PokeBallStyle } from "@/app/constants";
 
 export default function InfoCard({
   title,
@@ -22,9 +23,14 @@ export default function InfoCard({
   collapsibleContent,
   setOldCollapsibleContent,
   href = undefined,
+  beginnerAdvanced,
 }) {
   const theme = useTheme();
   const { push } = useRouter();
+
+  const dynamicStyle =
+    beginnerAdvanced === "beginner" ? PokeBallStyle : MasterBallStyle;
+
   return (
     <Paper
       elevation={
@@ -83,15 +89,17 @@ export default function InfoCard({
           mt: -3,
           mx: -4,
           pb: 1,
-          backgroundColor: "pokeball.red",
+          ...dynamicStyle,
         }}
       >
         <Box
           sx={{
+            position: "relative",
             display: "flex",
             justifyContent: "space-between",
             px: 4,
             pt: 3,
+            zIndex: 2,
           }}
         >
           <Typography

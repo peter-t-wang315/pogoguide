@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect, useRef, createRef } from "react";
 import InfoCollapsible from "@/components/InfoCollapsible";
+import { MasterBallStyle, PokeBallStyle } from "@/app/constants";
 
 export default function InfoPage({ beginnerCards, advancedCards }) {
   const [beginnerAdvanced, setBeginnerAdvanced] = useState("beginner");
@@ -70,6 +71,11 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
     }
   };
 
+  const dynamicStyle =
+    beginnerAdvanced === "beginner"
+      ? PokeBallStyle
+      : { backgroundColor: "pokeball.purple" };
+
   return (
     <>
       <Box
@@ -83,6 +89,7 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
           pb: 5.5,
           px: 2,
           color: theme.palette.primary.foreground,
+          ...dynamicStyle,
         }}
       >
         <Typography
@@ -128,6 +135,7 @@ export default function InfoPage({ beginnerCards, advancedCards }) {
                       collapsibleContent={collapsibleContent}
                       setOldCollapsibleContent={setOldCollapsibleContent}
                       href={card?.href}
+                      beginnerAdvanced={beginnerAdvanced}
                     />
                   </Grid>
                   {((index + 1) % columnNum === 0 ||
