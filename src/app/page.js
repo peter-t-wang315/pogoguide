@@ -54,8 +54,8 @@ export default function Home() {
               </Typography>
               <Divider sx={{ width: "67%", height: 2, my: 2 }} />
             </Grid>
-            {categories.map((category) => (
-              <Grid item xs={12} bgsm={6} lg={4}>
+            {categories.map((category, index) => (
+              <Grid item xs={12} bgsm={6} lg={4} key={`category-${index}`}>
                 <HomePageCard
                   img={category.img}
                   altImg={category.altImg}

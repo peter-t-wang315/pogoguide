@@ -50,7 +50,7 @@ export default function NavDrawer({}) {
   }, []);
 
   return (
-    <>
+    <div>
       <IconButton onClick={() => setOpen(!open)} ref={drawerButtonRef}>
         <MenuIcon />
       </IconButton>
@@ -67,9 +67,8 @@ export default function NavDrawer({}) {
       >
         <List sx={{ mt: 9, py: 0 }} ref={listItemsRef}>
           {options.map((option, index) => (
-            <>
+            <div key={option.name}>
               <ListItem
-                key={option.name}
                 onClick={() =>
                   setCollapseIndex(collapseIndex === null ? index : null)
                 }
@@ -93,7 +92,7 @@ export default function NavDrawer({}) {
               <Divider sx={{ backgroundColor: "common.dark-gray" }} />
               <Collapse in={collapseIndex === index} unmountOnExit>
                 {option?.sections?.map((section) => (
-                  <List disablePadding>
+                  <List disablePadding key={section.title}>
                     <ListItemButton
                       sx={{ py: 0.75, px: 5 }}
                       onClick={() => {
@@ -123,10 +122,10 @@ export default function NavDrawer({}) {
                   </List>
                 ))}
               </Collapse>
-            </>
+            </div>
           ))}
         </List>
       </Drawer>
-    </>
+    </div>
   );
 }
