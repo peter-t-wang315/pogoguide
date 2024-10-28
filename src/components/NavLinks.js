@@ -1,7 +1,10 @@
 "use client";
 
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import NavDrawer from "./NavDrawer";
+import { Stack, useMediaQuery, useTheme, Typography } from "@mui/material";
+import MobileNavDrawer from "./MobileNavDrawer";
+import NavDropDown from "./NavDropdown";
+import categories from "../app/InfoCategories";
+import pages from "@/app/InfoPages";
 
 export default function NavLinks({}) {
   const theme = useTheme();
@@ -9,11 +12,18 @@ export default function NavLinks({}) {
 
   return medium ? (
     <Stack direction="row" spacing={{ xs: 2, lg: 4 }}>
-      <p>Categories</p>
-      <p>Pages</p>
-      <p>Contribute</p>
+      <Stack direction="row" spacing={{ xs: 2, lg: 4 }} alignItems="center">
+        <NavDropDown title="Categories" items={categories} />
+        <NavDropDown title="Pages" items={pages} />
+        {/* <Typography component="span" variant="body1">
+          Pages
+        </Typography> */}
+        <Typography component="span" variant="body1">
+          Contribute
+        </Typography>
+      </Stack>
     </Stack>
   ) : (
-    <NavDrawer />
+    <MobileNavDrawer />
   );
 }
